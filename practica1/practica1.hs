@@ -158,3 +158,67 @@ or :: Bool -> Bool -> Bool
 or False False = False
 or _ _ = True
 
+-- REGISTROS
+
+-- 1. Definir el tipo de dato Persona, como un nombre y la edad de la persona. Realizar las
+-- siguientes funciones:
+
+type Alias = String
+type Edad = Int
+
+data Persona = P Alias Edad deriving Show
+
+jose = P "Jose" 29
+andres = P "Andres" 25
+
+-- A - Devuelve el nombre de una persona.
+nombre :: Persona -> String
+nombre (P n e) = n
+
+-- B - Devuelve la edad de una persona.
+edad :: Persona -> Int
+edad (P n e ) = e
+
+-- C - Aumenta en uno la edad de la persona.
+crecer :: Persona -> Persona
+crecer (P n e ) = P (n) (e+1)
+
+-- D - Dados un nombre y una persona, devuelve una persona con la edad de la persona y el
+--nuevo nombre.
+cambioDeNombre :: String -> Persona -> Persona
+cambioDeNombre s (P n e )= P (s) (e)
+
+-- E - Dadas dos personas indica si la primera es mayor que la segunda.
+esMayorQueLaOtra :: Persona -> Persona -> Bool
+esMayorQueLaOtra (P n e) (P s d) = if(e>d)
+                                   then True
+                                   else False
+
+-- F - Dadas dos personas devuelve a la persona que sea mayor.
+laQueEsMayor :: Persona -> Persona -> Persona
+laQueEsMayor (P n e ) (P s d ) = if(e>d)
+                                 then P (n) (e)
+                                 else P (s) (d)
+
+-- 2. Definir los tipos de datos Pokemon, como un TipoDePokemon (agua, fuego o planta) y un
+-- porcentaje de energía; y Entrenador, como un nombre y dos pokemones. Luego definir las
+-- siguientes funciones:
+
+type Nombre = String 
+type Energia = Int
+
+data TipoDePokemon = Agua | Fuego | Planta deriving Show
+
+data Pokemon =  ElPokemon TipoDePokemon Energia deriving Show
+
+data Entrenador = ElEntrenador Nombre Pokemon Pokemon deriving Show
+
+bulbasur = ElPokemon Planta 10
+
+charmander = ElPokemon Fuego 20 
+
+squirtle = ElPokemon Agua 30
+
+ash = ElEntrenador "Ash" (bulbasur) (charmander)
+
+
