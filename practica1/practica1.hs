@@ -219,6 +219,33 @@ charmander = ElPokemon Fuego 20
 
 squirtle = ElPokemon Agua 30
 
-ash = ElEntrenador "Ash" (bulbasur) (charmander)
+ash = ElEntrenador "Ash" (squirtle) (charmander)
+bruk = ElEntrenador "Bruk" (squirtle) (squirtle)
+oh = ElEntrenador "Oh" (bulbasur) (squirtle)
+-- A - Dados dos pokémon indica si el primero, en base al tipo, es superior al segundo. Agua
+-- supera a fuego, fuego a planta y planta a agua. Y cualquier otro caso es falso.
+superaA :: Pokemon -> Pokemon -> Bool
+superaA (ElPokemon tipo1 energia1) (ElPokemon tipo2 energia2) = superaTipo  tipo1 tipo2
+
+superaTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+superaTipo Agua Fuego = True
+superaTipo Fuego Planta = True
+superaTipo Planta Agua = True
+superaTipo _ _ = False
+
+-- B - Devuelve la cantidad de pokémon de determinado tipo que posee el entrenador.
+cantidadDePokemonesDe :: TipoDePokemon -> Entrenador -> Int
+cantidadDePokemonesDe tipoDePoke (ElEntrenador nombre poke1 poke2) = cantidadDePokemonesDeTipo tipoDePoke poke1 poke2
+
+cantidadDePokemonesDeTipo :: TipoDePokemon -> Pokemon -> Pokemon -> Int
+cantidadDePokemonesDeTipo Agua (ElPokemon Agua energia1) (ElPokemon Agua energia2) = 2
+cantidadDePokemonesDeTipo Agua (ElPokemon Agua energia1) (ElPokemon _ energia2) = 1
+cantidadDePokemonesDeTipo Agua (ElPokemon _ energia1) (ElPokemon Agua energia2) = 1
+cantidadDePokemonesDeTipo Fuego (ElPokemon Fuego energia1) (ElPokemon Fuego energia2) = 2
+cantidadDePokemonesDeTipo Fuego (ElPokemon Fuego energia1) (ElPokemon _ energia2) = 1
+cantidadDePokemonesDeTipo Fuego (ElPokemon _ energia1) (ElPokemon Fuego energia2) = 1
+cantidadDePokemonesDeTipo Planta (ElPokemon Planta energia1) (ElPokemon Planta energia2) = 2
+cantidadDePokemonesDeTipo Planta (ElPokemon Planta energia1) (ElPokemon _ energia2) = 1
+cantidadDePokemonesDeTipo Planta (ElPokemon _ energia1) (ElPokemon Planta energia2) = 1
 
 
