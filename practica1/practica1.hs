@@ -234,6 +234,7 @@ superaTipo Planta Agua = True
 superaTipo _ _ = False
 
 -- B - Devuelve la cantidad de pokémon de determinado tipo que posee el entrenador.
+--Solucion media optima
 cantidadDePokemonesDe :: TipoDePokemon -> Entrenador -> Int
 cantidadDePokemonesDe tipoDePoke (ElEntrenador nombre poke1 poke2) = cantidadDePokemonesDeTipo tipoDePoke poke1 poke2
 
@@ -248,4 +249,26 @@ cantidadDePokemonesDeTipo Planta (ElPokemon Planta energia1) (ElPokemon Planta e
 cantidadDePokemonesDeTipo Planta (ElPokemon Planta energia1) (ElPokemon _ energia2) = 1
 cantidadDePokemonesDeTipo Planta (ElPokemon _ energia1) (ElPokemon Planta energia2) = 1
 
+
+-- Resolucion B2
+-- Solucion optima
+cantidadDePokemonesDe' :: TipoDePokemon -> Entrenador -> Int
+cantidadDePokemonesDe' t (ElEntrenador _ poke1 poke2) = cantidadDePokemonesDeTipo' t poke1 poke2 
+
+cantidadDePokemonesDeTipo' :: TipoDePokemon -> Pokemon -> Pokemon -> Int
+cantidadDePokemonesDeTipo' t (ElPokemon tipo1 _) (ElPokemon tipo2 _) = daUnoSi( esMismoTipo t tipo1) + daUnoSi (esMismoTipo t tipo2)
+
+daUnoSi :: Bool -> Int
+daUnoSi True = 1
+daUnoSi False = 0
+
+esMismoTipo :: TipoDePokemon -> TipoDePokemon -> Bool
+esMismoTipo Agua Agua = True
+esMismoTipo Fuego Fuego = True
+esMismoTipo Planta Planta = True
+esMismoTipo _ _ = False
+
+-- C - Dado un par de entrenadores, devuelve a sus pokemones en una lista.
+juntarPokemones :: (Entrenador, Entrenador) -> [Pokemon]
+juntarPokemones ((ElEntrenador n poke1 poke2),(ElEntrenador nn poke3 poke4) ) = [poke1,poke2,poke3,poke4]
 
