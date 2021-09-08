@@ -272,3 +272,21 @@ esMismoTipo _ _ = False
 juntarPokemones :: (Entrenador, Entrenador) -> [Pokemon]
 juntarPokemones ((ElEntrenador n poke1 poke2),(ElEntrenador nn poke3 poke4) ) = [poke1,poke2,poke3,poke4]
 
+
+-- FUNCIONES POLIMORFICAS
+
+--1 - Defina las siguientes funciones polimórficas:
+
+-- A - Dado un elemento de algun tipo devuelve ese mismo elemento . 
+loMismo :: a -> a
+loMismo a = a
+
+-- B - Dado un elemento de algún tipo devuelve el número 7.
+siempreSiete :: a -> Int
+siempreSiete a = 7
+
+-- C - Dadas una tupla, invierte sus componentes.
+-- ¿Por qué existen dos variables de tipo diferentes?
+swap :: (a,b) -> (b,a)
+swap (a,b) = (b,a)
+
