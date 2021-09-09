@@ -290,3 +290,6 @@ siempreSiete a = 7
 swap :: (a,b) -> (b,a)
 swap (a,b) = (b,a)
 
+-- Las funciones son polimorficas porque en los argumentos de dicha funcion
+-- podemos rellenarlos con cualquier tipo de datos .
+
