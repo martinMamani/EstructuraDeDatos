@@ -293,3 +293,36 @@ swap (a,b) = (b,a)
 -- Las funciones son polimorficas porque en los argumentos de dicha funcion
 -- podemos rellenarlos con cualquier tipo de datos .
 
+
+-- PATTERN MATCHING SOBRE LISTAS
+
+-- 1 - Defina las siguientes funciones polimórficas utilizando pattern matching sobre listas (no
+-- utilizar las funciones que ya vienen con Haskell):
+
+-- A - Dada una lista de elementos, si es vacía devuelve T rue, sino devuelve F alse.
+-- Definida en Haskell como null.
+
+estaVacia :: [a] -> Bool
+estaVacia [] = True
+estaVacia _ = False
+
+-- B - Dada una lista devuelve su primer elemento.
+-- Definida en Haskell como head.
+-- Nota: tener en cuenta que el constructor de listas es :
+
+elPrimero :: [a]-> a
+elPrimero (x:xs) = x
+
+-- C - Dada una lista devuelve esa lista menos el primer elemento.
+-- Definida en Haskell como tail.
+-- Nota: tener en cuenta que el constructor de listas es :
+
+sinElPrimero :: [a]->[a]
+sinElPrimero (x:xs)= xs
+
+-- D - Dada una lista devuelve un par, donde la primera componente es el primer elemento de la
+-- lista, y la segunda componente es esa lista pero sin el primero.
+-- Nota: tener en cuenta que el constructor de listas es :
+
+splitHead :: [a] -> (a,[a])
+splitHead (x:xs) = (x,xs)
